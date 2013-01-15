@@ -59,14 +59,14 @@
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint origin = [swg.rippledSprite convertTouchToNodeSpace:touch];
     
-    [swg createWaveAt:CGPointMake((int)(origin.x),(int)(origin.y))];
+    [swg createWaveAt:CGPointMake(origin.x,origin.y)];
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event { 
     CGPoint origin = [swg.rippledSprite convertTouchToNodeSpace:touch];
     NSLog(@"touch origin: %f , %f",origin.x,origin.y);
     
-    [swg createWaveAt:CGPointMake((int)(origin.x),(int)(origin.y))];
+    [swg createWaveAt:CGPointMake(origin.x,origin.y)];
 }
 
 
