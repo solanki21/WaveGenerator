@@ -6,10 +6,11 @@
 //
 //
 
-#import "Ripples.h"
+#import "RipplesLayer.h"
 #import "CCSpriteWaveGenerator.h"
+#import "CCTouchDispatcher.h"
 
-@implementation Ripples{
+@implementation RipplesLayer{
     CCSpriteWaveGenerator *swg;
 }
 
@@ -17,19 +18,25 @@
     self = [super init];
     if(self){
         CCSprite* sprite = [CCSprite spriteWithFile:@"Default.png"];
-        swg = [[CCSpriteWaveGenerator alloc] initWithCCSprite:sprite];
         
+        //Create CCSpriteWaveGenerator for the sprite.
+        swg = [[CCSpriteWaveGenerator alloc] initWithCCSprite:sprite];
         
         //Display
         CGSize size = [[CCDirector sharedDirector] winSize];
-        swg.sprite.position = ccp(size.width/2,size.height/2);
-        swg.sprite.scale = 0.5;
-        swg.sprite.rotation = 180;
-        swg.sprite.scaleX = -0.5;
-        [self addChild:swg.sprite];
         
-        [self scheduleUpdate];
+        //Get the rippled sprite from the wave generator//
+        CCSprite *rippledSprite = swg.rippledSprite;
+        
+        rippledSprite.rotation = 90;
+        //rippledSprite.scale = 0.5;
+        rippledSprite.scaleY = -1.0;
+        rippledSprite.position = ccp(size.width/2+80,size.height/2-80);
+        [self addChild:rippledSprite];
+        
 
+        [self scheduleUpdate];
+         self.isTouchEnabled = YES;
     }
     
     return self;
@@ -37,24 +44,29 @@
 
 - (void) update:(ccTime)dt{
     [swg update:dt];
-
-    ///cause random ripples
-    static ccTime tickCounter  = 0.0;
-    tickCounter += dt;
-    
-    if(tickCounter > 0.5){
-        NSLog(@"Causing Ripple");
-        [self causeRandomRipples];
-        tickCounter = 0.0;
-    }
 }
 
 
-- (void) causeRandomRipples{
-    CGPoint origin = CGPointMake(rand()%50, rand()%50);
-    if(origin.x != 0 && origin.y != 0){
-        [swg createWaveAt:origin];
-    }
+-(void) registerWithTouchDispatcher
+{
+	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    return YES;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
+    CGPoint origin = [swg.rippledSprite convertTouchToNodeSpace:touch];
+    
+    [swg createWaveAt:CGPointMake((int)(origin.x),(int)(origin.y))];
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event { 
+    CGPoint origin = [swg.rippledSprite convertTouchToNodeSpace:touch];
+    NSLog(@"touch origin: %f , %f",origin.x,origin.y);
+    
+    [swg createWaveAt:CGPointMake((int)(origin.x),(int)(origin.y))];
 }
 
 

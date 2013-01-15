@@ -131,8 +131,8 @@
 		04127CBE16A4F71400B391EA /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 04127CBD16A4F71400B391EA /* vec4.c */; };
 		04127CC316A4F71400B391EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CC216A4F71400B391EA /* main.m */; };
 		04127CC616A4F71400B391EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CC516A4F71400B391EA /* AppDelegate.m */; };
-		04127CC916A4F71400B391EA /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CC816A4F71400B391EA /* HelloWorldLayer.m */; };
-		04127CCC16A4F71400B391EA /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CCB16A4F71400B391EA /* IntroLayer.m */; };
+		04127CD716A4F72E00B391EA /* CCSpriteWaveGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */; };
+		04127CD816A4F72E00B391EA /* RipplesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CD616A4F72E00B391EA /* RipplesLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,10 +394,11 @@
 		04127CC216A4F71400B391EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04127CC416A4F71400B391EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04127CC516A4F71400B391EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04127CC716A4F71400B391EA /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		04127CC816A4F71400B391EA /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		04127CCA16A4F71400B391EA /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		04127CCB16A4F71400B391EA /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		04127CD216A4F72E00B391EA /* CCSpriteWaveGeneratorShaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteWaveGeneratorShaders.h; sourceTree = "<group>"; };
+		04127CD316A4F72E00B391EA /* CCSpriteWaveGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteWaveGenerator.h; sourceTree = "<group>"; };
+		04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteWaveGenerator.m; sourceTree = "<group>"; };
+		04127CD516A4F72E00B391EA /* RipplesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RipplesLayer.h; sourceTree = "<group>"; };
+		04127CD616A4F72E00B391EA /* RipplesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RipplesLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,12 +457,13 @@
 		04127B4C16A4F71100B391EA /* CocosWaveExample */ = {
 			isa = PBXGroup;
 			children = (
+				04127CD216A4F72E00B391EA /* CCSpriteWaveGeneratorShaders.h */,
+				04127CD316A4F72E00B391EA /* CCSpriteWaveGenerator.h */,
+				04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */,
+				04127CD516A4F72E00B391EA /* RipplesLayer.h */,
+				04127CD616A4F72E00B391EA /* RipplesLayer.m */,
 				04127CC416A4F71400B391EA /* AppDelegate.h */,
 				04127CC516A4F71400B391EA /* AppDelegate.m */,
-				04127CC716A4F71400B391EA /* HelloWorldLayer.h */,
-				04127CC816A4F71400B391EA /* HelloWorldLayer.m */,
-				04127CCA16A4F71400B391EA /* IntroLayer.h */,
-				04127CCB16A4F71400B391EA /* IntroLayer.m */,
 				04127B4D16A4F71100B391EA /* Resources */,
 				04127B6716A4F71200B391EA /* libs */,
 				04127CC016A4F71400B391EA /* Supporting Files */,
@@ -1007,8 +1009,8 @@
 				04127CBE16A4F71400B391EA /* vec4.c in Sources */,
 				04127CC316A4F71400B391EA /* main.m in Sources */,
 				04127CC616A4F71400B391EA /* AppDelegate.m in Sources */,
-				04127CC916A4F71400B391EA /* HelloWorldLayer.m in Sources */,
-				04127CCC16A4F71400B391EA /* IntroLayer.m in Sources */,
+				04127CD716A4F72E00B391EA /* CCSpriteWaveGenerator.m in Sources */,
+				04127CD816A4F72E00B391EA /* RipplesLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1114,7 @@
 				04127CD116A4F71400B391EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

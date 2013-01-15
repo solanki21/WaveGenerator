@@ -1,68 +1,84 @@
-//
-//  CCSpriteWaveGenerator.m
-//  CocosShaderEffects
-//
-//  Created by Kalpesh Solanki on 1/14/13.
-//
-//
+/*
+ * Copyright (c) 2013 Kalpesh Solanki
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
 
 #import "CCSpriteWaveGenerator.h"
 #import "CCSpriteWaveGeneratorShaders.h"
 
-#define MAX_HF_WIDTH 50
+//Increase this value if you want to increase the "resolution" of the ripples//
+//Note that, higher the value slower the simulation
+#define MAX_HEIGHTFIELD_WIDTH 100
 
 @implementation CCSpriteWaveGenerator{
     CCRenderTexture *rtPing,*rtPong;
     CCRenderTexture *resultTexture;
-    CGSize resultTextureSize;
+
     CCSprite *sourceSprite;
     CCSprite *resultSprite;
+    
+    CGSize resultTextureSize;
     CGSize heightFieldSize;
+    float spriteToHeightFieldSizeRatio;
+    
     bool causeRippleFlag;
     CGPoint rippleOrigin;
-    
-    CCSprite *_hfsprite;
 }
 
-@synthesize sprite = resultSprite;
-@synthesize hfsprite = _hfsprite;
+@synthesize rippledSprite = resultSprite;
 
 - (id) initWithCCSprite:(CCSprite*)sprite{
     self = [super init];
     if(self){
-        sourceSprite = sprite;
-        float spriteRatio = sourceSprite.boundingBox.size.width/sourceSprite.boundingBox.size.height;
+        sourceSprite = [sprite retain];
+        float spriteWidthToHeightRatio = sourceSprite.boundingBox.size.width/sourceSprite.boundingBox.size.height;
         
         int hfwidth = sourceSprite.boundingBox.size.width/2.0;
         int hfheight = 0;
-        if(hfwidth > MAX_HF_WIDTH){
-            hfwidth = MAX_HF_WIDTH;
+        if(hfwidth > MAX_HEIGHTFIELD_WIDTH){
+            hfwidth = MAX_HEIGHTFIELD_WIDTH;
         }
-        hfheight = hfwidth*spriteRatio;
-        
+        hfheight = hfwidth/spriteWidthToHeightRatio;
         heightFieldSize = CGSizeMake(hfwidth, hfheight);
+        spriteToHeightFieldSizeRatio = sourceSprite.boundingBox.size.width/hfwidth;
+        
         resultTextureSize = sourceSprite.boundingBox.size;
         
        // NSLog(@"HF size: %d x %d",hfwidth,hfheight);
         
         
         //Create Two Render Textures to render on each other's textures//
-        rtPing = [CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height];
+        rtPing = [[CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height] retain];
         [self setupRenderTexture:rtPing];
         
-        rtPong = [CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height];
+        rtPong = [[CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height] retain];
         [self setupRenderTexture:rtPong];
                 
-        resultTexture = [CCRenderTexture renderTextureWithWidth:resultTextureSize.width height:resultTextureSize.height];
+        resultTexture = [[CCRenderTexture renderTextureWithWidth:resultTextureSize.width height:resultTextureSize.height] retain];
         [self setupRippleSpriteShader:sourceSprite];
         
-        resultSprite = [CCSprite spriteWithTexture:resultTexture.sprite.texture];
+        resultSprite = [[CCSprite spriteWithTexture:resultTexture.sprite.texture] retain];
 
         
         causeRippleFlag = false;
-
-        _hfsprite = rtPing.sprite;
-        
     }
     
     return self;
@@ -72,11 +88,23 @@
 {
     [self calculateHeighField];
     [self applyRipplesToSprite:sourceSprite andStoreIn:resultTexture];
+    
+    causeRippleFlag = false;
 }
 
 - (void) createWaveAt:(CGPoint) origin{
     causeRippleFlag = true;
-    rippleOrigin = origin;
+    rippleOrigin = CGPointMake(origin.x/spriteToHeightFieldSizeRatio,origin.y/spriteToHeightFieldSizeRatio);
+  //  NSLog(@"hf size: %f x %f, ripple Origin: %f , %f",heightFieldSize.width,heightFieldSize.height, rippleOrigin.x,rippleOrigin.y);
+}
+
+- (void) dealloc{
+    [super dealloc];
+    [rtPing release];
+    [rtPong release];
+    [resultSprite release];
+    [resultTexture release];
+    [sourceSprite release];
 }
 
 ////////// Private Methods ////////////////

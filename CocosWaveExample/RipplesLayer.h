@@ -12,6 +12,6 @@
 #define HEIGHTFIELD_SIZE 100
  
 
-@interface Ripples : CCLayer
+@interface RipplesLayer : CCLayer
 
 @end
