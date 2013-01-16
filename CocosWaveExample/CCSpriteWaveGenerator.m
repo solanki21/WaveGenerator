@@ -26,7 +26,7 @@
 
 //Increase this value if you want to increase the "resolution" of the ripples//
 //Note that, higher the value slower the simulation
-#define MAX_HEIGHTFIELD_WIDTH 100
+#define MAX_HEIGHTFIELD_WIDTH 128
 
 @implementation CCSpriteWaveGenerator{
     CCRenderTexture *rtPing,*rtPong;
@@ -186,8 +186,8 @@
     [rt.sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
     [rt.sprite.shaderProgram link];
     [rt.sprite.shaderProgram updateUniforms];
-    
-    [rt.sprite.texture setAliasTexParameters];
+
+    [rt.sprite.texture setAntiAliasTexParameters];
 }
 
 - (void) swapRenderTextures{

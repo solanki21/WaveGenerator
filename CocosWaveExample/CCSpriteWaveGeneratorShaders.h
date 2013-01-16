@@ -47,19 +47,14 @@ void main(){                                                                    
     texture2D(HeightFieldB,texCoord).x;                                                           \n\
                                                                                                   \n\
                                                                                                   \n\
-    if(texCoord.x/Scale.x > 1.0 && texCoord.y/Scale.y > 1.0 && val > 0.01)                        \n\{                                                                                         \n\
-        gl_FragColor.x = val*0.99;                                                                \n\
-    }                                                                                             \n\
-    else{                                                                                         \n\
-        gl_FragColor = vec4(vec3(0.0),1.0);                                                       \n\
-    }                                                                                             \n\
+                                                                                                  \n\
                                                                                                   \n\
     float radius = 3.0;                                                                           \n\
     float d = distance(RippleOrigin,texCoord/Scale);                                              \n\
     if(d < radius && CauseRippleFlag == true){                                                    \n\
-        gl_FragColor = vec4(vec3(0.5),1.0);//Force                                                \n\
+          val = .5;                                                                               \n\
     }                                                                                             \n\
-                                                                                                  \n\
+     gl_FragColor = vec4(vec3(val*.99),1.0);                                                      \n\
 }                                                                                                 \n\
 ";
 

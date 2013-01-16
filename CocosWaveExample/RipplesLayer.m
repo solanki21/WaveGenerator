@@ -29,8 +29,8 @@
         CCSprite *rippledSprite = swg.rippledSprite;
         
         rippledSprite.rotation = 90;
-        //rippledSprite.scale = 0.5;
-        rippledSprite.scaleY = -1.0;
+        rippledSprite.scale = 2.0;
+        rippledSprite.scaleY = -2.0;
         rippledSprite.position = ccp(size.width/2+80,size.height/2-80);
         [self addChild:rippledSprite];
         
