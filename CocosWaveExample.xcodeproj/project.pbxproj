@@ -133,6 +133,14 @@
 		04127CC616A4F71400B391EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CC516A4F71400B391EA /* AppDelegate.m */; };
 		04127CD716A4F72E00B391EA /* CCSpriteWaveGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */; };
 		04127CD816A4F72E00B391EA /* RipplesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04127CD616A4F72E00B391EA /* RipplesLayer.m */; };
+		0482AC8C16A7735E007A2A1A /* heightfield_frag_shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0482AC8B16A7735E007A2A1A /* heightfield_frag_shader.fsh */; };
+		0482AC8F16A773F5007A2A1A /* heightfield_vert_shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0482AC8E16A773F5007A2A1A /* heightfield_vert_shader.vsh */; };
+		0482AC9016A77555007A2A1A /* heightfield_frag_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 0482AC8B16A7735E007A2A1A /* heightfield_frag_shader.fsh */; };
+		0482AC9116A77555007A2A1A /* heightfield_vert_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0482AC8E16A773F5007A2A1A /* heightfield_vert_shader.vsh */; };
+		0482AC9716A88EA2007A2A1A /* ripple_frag_shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0482AC9616A88EA2007A2A1A /* ripple_frag_shader.fsh */; };
+		0482AC9A16A88EB8007A2A1A /* ripple_vert_shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0482AC9916A88EB8007A2A1A /* ripple_vert_shader.vsh */; };
+		0482AC9B16A89173007A2A1A /* ripple_vert_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0482AC9916A88EB8007A2A1A /* ripple_vert_shader.vsh */; };
+		0482AC9C16A89173007A2A1A /* ripple_frag_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 0482AC9616A88EA2007A2A1A /* ripple_frag_shader.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -399,6 +407,10 @@
 		04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteWaveGenerator.m; sourceTree = "<group>"; };
 		04127CD516A4F72E00B391EA /* RipplesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RipplesLayer.h; sourceTree = "<group>"; };
 		04127CD616A4F72E00B391EA /* RipplesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RipplesLayer.m; sourceTree = "<group>"; };
+		0482AC8B16A7735E007A2A1A /* heightfield_frag_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = heightfield_frag_shader.fsh; sourceTree = "<group>"; };
+		0482AC8E16A773F5007A2A1A /* heightfield_vert_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = heightfield_vert_shader.vsh; sourceTree = "<group>"; };
+		0482AC9616A88EA2007A2A1A /* ripple_frag_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ripple_frag_shader.fsh; sourceTree = "<group>"; };
+		0482AC9916A88EB8007A2A1A /* ripple_vert_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ripple_vert_shader.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +469,10 @@
 		04127B4C16A4F71100B391EA /* CocosWaveExample */ = {
 			isa = PBXGroup;
 			children = (
+				0482AC8B16A7735E007A2A1A /* heightfield_frag_shader.fsh */,
+				0482AC8E16A773F5007A2A1A /* heightfield_vert_shader.vsh */,
+				0482AC9916A88EB8007A2A1A /* ripple_vert_shader.vsh */,
+				0482AC9616A88EA2007A2A1A /* ripple_frag_shader.fsh */,
 				04127CD216A4F72E00B391EA /* CCSpriteWaveGeneratorShaders.h */,
 				04127CD316A4F72E00B391EA /* CCSpriteWaveGenerator.h */,
 				04127CD416A4F72E00B391EA /* CCSpriteWaveGenerator.m */,
@@ -884,6 +900,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0482AC9B16A89173007A2A1A /* ripple_vert_shader.vsh in Resources */,
+				0482AC9C16A89173007A2A1A /* ripple_frag_shader.fsh in Resources */,
+				0482AC9016A77555007A2A1A /* heightfield_frag_shader.fsh in Resources */,
+				0482AC9116A77555007A2A1A /* heightfield_vert_shader.vsh in Resources */,
 				04127B4F16A4F71100B391EA /* Default.png in Resources */,
 				04127B5116A4F71100B391EA /* Default-Landscape~ipad.png in Resources */,
 				04127B5316A4F71100B391EA /* fps_images.png in Resources */,
@@ -1011,6 +1031,10 @@
 				04127CC616A4F71400B391EA /* AppDelegate.m in Sources */,
 				04127CD716A4F72E00B391EA /* CCSpriteWaveGenerator.m in Sources */,
 				04127CD816A4F72E00B391EA /* RipplesLayer.m in Sources */,
+				0482AC8C16A7735E007A2A1A /* heightfield_frag_shader.fsh in Sources */,
+				0482AC8F16A773F5007A2A1A /* heightfield_vert_shader.vsh in Sources */,
+				0482AC9716A88EA2007A2A1A /* ripple_frag_shader.fsh in Sources */,
+				0482AC9A16A88EB8007A2A1A /* ripple_vert_shader.vsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
