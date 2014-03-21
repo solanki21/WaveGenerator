@@ -73,8 +73,8 @@
         rtPong = [[CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height] retain];
         [self setupRenderTexture:rtPong];
 
-        rtHFOffset = [[CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height] retain];
-        [self setupHFOffsetRenderTexture:rtHFOffset];
+        //rtHFOffset = [[CCRenderTexture renderTextureWithWidth:heightFieldSize.width height:heightFieldSize.height] retain];
+        //[self setupHFOffsetRenderTexture:rtHFOffset];
         
         resultTexture = [[CCRenderTexture renderTextureWithWidth:resultTextureSize.width height:resultTextureSize.height] retain];
         [self setupRippleSpriteShader:sourceSprite];
@@ -234,21 +234,21 @@
 
 - (void)setupHFOffsetRenderTexture:(CCRenderTexture*) rt{
     
-    [rt beginWithClear:0.0 g:0.0 b:0.0 a:1.0];
-    [rt end];
-    
-    heightFieldSpriteForRenderingToHFOffsetRenderTexture = [[CCSprite spriteWithTexture:rtPing.sprite.texture] retain];
-    
-    CCSprite *sprite = heightFieldSpriteForRenderingToHFOffsetRenderTexture;
-    sprite.scaleY = -1.0;
-    
-    sprite.shaderProgram = [[CCGLProgram alloc] initWithVertexShaderFilename:@"hfoffset_vert_shader.vsh" fragmentShaderFilename:@"hfoffset_frag_shader.fsh"];
-    
-    [sprite.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
-    [sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
-    [sprite.shaderProgram link];
-    [sprite.shaderProgram updateUniforms];
-    [sprite.texture setAntiAliasTexParameters];
+//    [rt beginWithClear:0.0 g:0.0 b:0.0 a:1.0];
+//    [rt end];
+//    
+//    heightFieldSpriteForRenderingToHFOffsetRenderTexture = [[CCSprite spriteWithTexture:rtPing.sprite.texture] retain];
+//    
+//    CCSprite *sprite = heightFieldSpriteForRenderingToHFOffsetRenderTexture;
+//    sprite.scaleY = -1.0;
+//    
+//    sprite.shaderProgram = [[CCGLProgram alloc] initWithVertexShaderFilename:@"hfoet_vert_shader.vsh" fragmentShaderFilename:@"hfoffsetg_shader.fsh"];
+//    
+//    [sprite.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
+//    [sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+//    [sprite.shaderProgram link];
+//    [sprite.shaderProgram updateUniforms];
+//    [sprite.texture setAntiAliasTexParameters];
 }
 
 - (void) swapRenderTextures{
